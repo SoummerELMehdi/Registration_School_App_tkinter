@@ -5,10 +5,10 @@ from os import getcwd
 
 path = getcwd()
 new = 1
-ins_url = path + "\inserting.py"
-upd_url = path + "\\updating.py"
-dlt_url = path + "\deleting.py"
-shw_url = path + "\listing.py"
+ins_url = path + "\f_inserting.py"
+upd_url = path + "\\f_updating.py"
+dlt_url = path + "\f_deleting.py"
+shw_url = path + "\f_listing.py"
 
 def inserting () : 
 	webbrowser.open(ins_url,new=new)
@@ -23,11 +23,11 @@ def show():
 
 
 
-stu = Tk()
-stu.geometry("400x540")
-stu.title ("Students's table")
+fl = Tk()
+fl.geometry("400x540")
+fl.title ("Major's table")
 
-mainframe = Frame( stu , bg = 'cornsilk4' )
+mainframe = Frame( fl , bg = 'cornsilk4' )
 mainframe.pack()
 
 slabel = Label ( mainframe , text = " Please choose your action " , relief = 'solid' , font = ('arial' , 15 ,'bold' )  , bg = 'cornsilk3' , fg = 'black' ,bd = 6 )
@@ -41,7 +41,6 @@ btn_3_frame = Frame ( mainframe ,width = 40 , height = 40 , relief = 'ridge' , b
 btn_3_frame.grid( row = 3 , column = 0 ,pady = 5)
 btn_4_frame = Frame ( mainframe ,width = 40 , height = 40 , relief = 'ridge' , bg = 'cornsilk3' , bd = 6 )
 btn_4_frame.grid( row = 4 , column = 0 ,pady = 5)
-
 
 
 List   = Button( btn_1_frame , text = "List-All" , font = ("italic" , 14 ) , bg = "cornsilk4" , fg = 'cornsilk3',pady = 10,padx = 20 , command = show )
