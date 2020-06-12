@@ -6,12 +6,11 @@ cnct = mysql.connect( host = "sql7.freemysqlhosting.net" , user = "sql7347048" ,
 cur = cnct.cursor()
 
 def showing() : 
-	cur.execute (" SELECT * FROM students " )
+	cur.execute (" SELECT * FROM filieres "  )
 	rows = cur.fetchall()
 	for row in rows : 
-		for e in row : 
-			data = e +'          '
-		lists.insert(lists.size()+1 ,data )
+		data = str(row [0]) + "       " +  row [1]
+		lists.insert( lists.size()+1 , data )
 	cnct.close()
 		
 		
