@@ -1,29 +1,60 @@
 from tkinter import *
+import tkinter.messagebox as messagebox
+import webbrowser
+import sqlite3 
 
-# dir chi BD initialisiha b hado "Statistique - Economie appliquée", "Statistique - Démographie", "Recherche Opérationnelle et Aide à la Décision", "Actuariat - Finance", "Data and Software Engineering"," Data Science")
 
 root = Tk()
-root.geometry("600x300")
-root.title("Filiere")
+root.geometry("530x330")
+root.title("Filiere ")
+
+new = 1
+
+def show():
+    cnx=sqlite3.connect('App.db')
+    cursor=cnx.cursor()
+    cursor.execute("SELECT * FROM Filiere")
+    rows=cursor.fetchall()
+    listF.delete(0, listF.size())
+
+    for row in rows:
+        Data=row[0]+"    "+row[1]+"    "+row[2]+"    "+row[3]+"    "+row[4]
+        listF.insert(listF.size()+1,Data)
+    cnx.close()
 
 
-filiere = Label(root, text="Ajouter une Filiere",font=("bold",10))
-filiere.place(x=25,y=120)
+def InsererF () : 
+	webbrowser.open("Filiere_insertion.py",new=new)
 
-e_filiere = Entry()
-e_filiere.place(x=150, y=120)
+def ModifierF () :
+	webbrowser.open("Filiere_modification.py",new=new)
+
+def SupprimerF ():
+	webbrowser.open("Filiere_supprimer.py",new=new)
 
 
 
+listF=Listbox(root,width=85,height=15)
+listF.place(x=10, y=10)
 
-list=Listbox(root,width=30,height=17)
-list.place(x=390, y=10)
-# define show methode to show Data base l3ibat
+mainframe = Frame( root)
+mainframe.place(x=115,y=260)
 
-Button(root, text='Submit',width=10,bg='green',fg='white').place(x=50,y=200)
 
-Button(root, text='Modifier',width=10,bg='red',fg='white').place(x=150,y=200)
+frame1 = Frame ( mainframe ,width = 10 , height = 10 , relief = 'ridge' , bg = 'LightSkyBlue1' , bd = 4 )
+frame1.grid( row = 0 , column = 1 ,pady = 3)
+frame2 = Frame ( mainframe ,width = 10 , height = 10 , relief = 'ridge' , bg = 'LightSkyBlue1' , bd = 4 )
+frame2.grid( row = 0 , column = 2 ,pady = 3)
+frame3 = Frame ( mainframe ,width = 10 , height = 10 , relief = 'ridge' , bg = 'LightSkyBlue1' , bd = 4 )
+frame3.grid( row = 0 , column = 3 ,pady = 3)
 
-Button(root, text='Supprimer',width=10,bg='blue',fg='white').place(x=250,y=200)
+Btn1 = Button(frame1, text = "Inserer",font = ("Arial" , 10 ),bg="LightSteelBlue4", pady = 10,padx = 15 ,command=InsererF)
+Btn1.grid (row = 0 , column = 0 , rowspan = 1 )
+Btn2 = Button(frame2, text = "Modifier",font = ("Arial" , 10 ),bg="LightSteelBlue4", pady = 10,padx = 15,command=ModifierF)
+Btn2.grid (row = 0 , column = 2 , rowspan = 1)
+Btn3 = Button(frame3, text = "Supprimer",font = ("Arial" , 10 ),bg="LightSteelBlue4", pady = 10,padx = 15,command=SupprimerF)
+Btn3.grid (row = 0 , column = 4 , rowspan = 1)
 
+show()
 root.mainloop()
+

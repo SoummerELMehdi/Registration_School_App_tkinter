@@ -1,48 +1,60 @@
 from tkinter import *
 import tkinter.messagebox as messagebox
-#dir BD dyalk o les methodes 
-# define show methode to show Data base l3ibat
+import webbrowser
+import sqlite3 
+
 
 root = Tk()
-root.geometry("600x300")
+root.geometry("530x330")
 root.title("Etudiant ")
 
-var = StringVar(root)
-var.set("Statistique - Economie appliquée")
+new = 1
 
-id = Label(root, text="Entrer votre ID",font=("bold",10))
-id.place(x=20,y=30)
+def show():
+    cnx=sqlite3.connect('App.db')
+    cursor=cnx.cursor()
+    cursor.execute("SELECT * FROM Etudiant")
+    rows=cursor.fetchall()
+    listE.delete(0, listE.size())
 
-nom = Label(root, text="Entrer votre Nom",font=("bold",10))
-nom.place(x=20,y=60)
-
-prenom = Label(root, text="Entrer votre Prenom",font=("bold",10))
-prenom.place(x=20,y=90)
-
-filiere = Label(root, text="Entrer votre Filiere",font=("bold",10))
-filiere.place(x=25,y=120)
-
-e_id = Entry()
-e_id.place(x=150, y=30)
-
-e_nom = Entry()
-e_nom.place(x=150, y=60)
-
-e_prenom = Entry()
-e_prenom.place(x=150, y=90)
-
-e_filiere = OptionMenu(root, var,"Statistique - Economie appliquée", "Statistique - Démographie", "Recherche Opérationnelle et Aide à la Décision", "Actuariat - Finance", "Data and Software Engineering"," Data Science")
-e_filiere.place(x=150, y=120)
-
-list=Listbox(root,width=30,height=17)
-list.place(x=390, y=10)
+    for row in rows:
+        Data=row[0]+"    "+row[1]+"    "+row[2]+"    "+row[3]+"    "+row[4]
+        listE.insert(listE.size()+1,Data)
+    cnx.close()
 
 
-Button(root, text='Submit',width=10,bg='green',fg='white').place(x=50,y=200)
+def Inserer () : 
+	webbrowser.open("insertion.py",new=new)
 
-Button(root, text='Modifier',width=10,bg='red',fg='white').place(x=150,y=200)
+def Modifier () :
+	webbrowser.open("modifier.py",new=new)
 
-Button(root, text='Supprimer',width=10,bg='blue',fg='white').place(x=250,y=200)
+def Supprimer ():
+	webbrowser.open("supprimer.py",new=new)
 
+
+
+listE=Listbox(root,width=85,height=15)
+listE.place(x=10, y=10)
+
+mainframe = Frame( root)
+mainframe.place(x=115,y=260)
+
+
+frame1 = Frame ( mainframe ,width = 10 , height = 10 , relief = 'ridge' , bg = 'LightSkyBlue1' , bd = 4 )
+frame1.grid( row = 0 , column = 1 ,pady = 3)
+frame2 = Frame ( mainframe ,width = 10 , height = 10 , relief = 'ridge' , bg = 'LightSkyBlue1' , bd = 4 )
+frame2.grid( row = 0 , column = 2 ,pady = 3)
+frame3 = Frame ( mainframe ,width = 10 , height = 10 , relief = 'ridge' , bg = 'LightSkyBlue1' , bd = 4 )
+frame3.grid( row = 0 , column = 3 ,pady = 3)
+
+Btn1 = Button(frame1, text = "Inserer",font = ("Arial" , 10 ),bg="LightSteelBlue4", pady = 10,padx = 15 ,command=Inserer)
+Btn1.grid (row = 0 , column = 0 , rowspan = 1 )
+Btn2 = Button(frame2, text = "Modifier",font = ("Arial" , 10 ),bg="LightSteelBlue4", pady = 10,padx = 15,command=Modifier)
+Btn2.grid (row = 0 , column = 2 , rowspan = 1)
+Btn3 = Button(frame3, text = "Supprimer",font = ("Arial" , 10 ),bg="LightSteelBlue4", pady = 10,padx = 15,command=Supprimer)
+Btn3.grid (row = 0 , column = 4 , rowspan = 1)
+
+show()
 root.mainloop()
 
