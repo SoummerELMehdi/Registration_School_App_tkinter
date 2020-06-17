@@ -1,5 +1,4 @@
 from tkinter import *
-import webbrowser
 import sqlite3
 
 root = Tk()
