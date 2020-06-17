@@ -34,10 +34,10 @@ new = 1
 url1 = "Etudiant.py"
 url2 = "Filiere.py"
 def openurl1():
-    webbrowser.open(url1,new=new)
+    exec(open("url1").read())
 
 def openurl2():
-    webbrowser.open(url2,new=new)
+    exec(open("url2").read())
 
 mainframe = Frame( root , bg = 'SteelBlue1' )
 mainframe.pack()
