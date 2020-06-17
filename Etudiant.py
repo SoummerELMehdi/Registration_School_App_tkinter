@@ -24,13 +24,13 @@ def show():
 
 
 def Inserer () : 
-	webbrowser.open("insertion.py",new=new)
+	exec(open("insertion.py").read())
 
 def Modifier () :
-	webbrowser.open("modifier.py",new=new)
+	exec(open("modifier.py").read())
 
 def Supprimer ():
-	webbrowser.open("supprimer.py",new=new)
+	exec(open("supprimer.py").read())
 
 
 
