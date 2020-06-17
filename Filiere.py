@@ -24,13 +24,13 @@ def show():
 
 
 def InsererF () : 
-	webbrowser.open("Filiere_insertion.py",new=new)
+	exec(open("Filiere_insertion.py").read())
 
 def ModifierF () :
-	webbrowser.open("Filiere_modification.py",new=new)
+	exec(open("Filiere_modification.py").read())
 
 def SupprimerF ():
-	webbrowser.open("Filiere_supprimer.py",new=new)
+	exec(open("Filiere_supprimer.py").read())
 
 
 
